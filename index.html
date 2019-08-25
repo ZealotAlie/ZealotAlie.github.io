@@ -9,8 +9,33 @@ bottom_image:
 	<div class="inner-hero text-container">
 		<div class="hero-text-container">
 			<h1 class="editable">诗比死好,花很美丽。</h1>
-			<div class="cta button alt"><a href="blog">开始阅读</a></div>
+			<div class="cta button alt"><a href="about">关于我</a></div>
 		</div>
 	</div>
-	<div class="learn-more"><a href="#learn-more">Learn more <span class="arrow">&#x25BC;</span></a></div>
+	<div class="learn-more"><a href="#read-blogs">Read blogs<span class="arrow">&#x25BC;</span></a></div>
 </section>
+
+<div class="content">
+	<section  class="blog-section" id="read-blogs">
+		<div class="text-container">
+			<p class="editor-link"><a href="cloudcannon:collections/_posts" class="btn"><strong>&#9998;</strong> Add Post</a></p>
+			<ul class="blog-posts">
+				{% include list-posts.html posts=paginator.posts %}
+			</ul>
+	
+			{% if paginator.total_pages > 1 %}
+				<div class="pagination">
+					{% if paginator.previous_page %}
+						<a href="{{ site.baseurl }}{{ paginator.previous_page_path }}" class="previous btn">&larr; Newer posts</a>
+					{% endif %}
+	
+					<span class="page_number ">{{ paginator.page }} of {{ paginator.total_pages }}</span>
+	
+					{% if paginator.next_page %}
+						<a href="{{ site.baseurl }}{{ paginator.next_page_path }}" class="next btn">Older posts &rarr;</a>
+					{% endif %}
+				</div>
+			{% endif %}
+		</div>
+	</section>
+</div>
