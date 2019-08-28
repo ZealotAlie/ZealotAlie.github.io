@@ -50,7 +50,10 @@ paginate_path: "/:num/"
 
 jekyll-archives:
   enabled: ['categories']
-
+  layout: archive
+  permalinks:
+      category: '/category/:name/'
+      
 defaults:
   -
     scope:
