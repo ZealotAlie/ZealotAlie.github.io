@@ -27,6 +27,10 @@
   @include clickable($text-color-3, $main-color-3);
 }
 
+.button--tertiary {
+  @include clickable($text-color-3, #fff);
+}
+
 .button--success {
   @include clickable($text-color-function, $green);
 }
