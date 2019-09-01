@@ -64,7 +64,7 @@
           {%- endif -%}
           <div class="item__description">
             {%- if _article.excerpt and include.show_excerpt -%}
-              <div class="article__content" itemprop="description articleBody">
+              <div class="article__content__preview" itemprop="description articleBody"  onclick="location.href='{{ _article_url }}';">
                 {%- if _excerpt_type == 'html' -%}
                   {{ _article.excerpt }}
                 {%- else -%}

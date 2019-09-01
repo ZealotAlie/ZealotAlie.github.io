@@ -219,3 +219,12 @@
     }
   }
 }
+
+.article__content__preview {
+  @extend .article__content;
+  @include transition(map-get($clickable, transition));
+  cursor: pointer;
+}
+.article__content__preview:hover {
+  color: $main-color-1;
+}
