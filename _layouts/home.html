@@ -16,6 +16,9 @@ titles:
   ko      : &KO       홈
   ko-KR   : *KO
 show_title: false
+mode: immersive
+header:
+      theme: dark
 articles:
   data_source: paginator.posts
   article_type: BlogPosting
@@ -23,7 +26,12 @@ articles:
   show_excerpt: true
   show_readmore: true
   show_info: true
+article_header:
+  type: overlay
+  align: center
+  height: 80vh
 ---
+
 <div class="layout--home">
   {%- include paginator.html -%}
 </div>

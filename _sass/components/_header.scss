@@ -64,7 +64,7 @@
   @include flexbox();
   @include align-items(center);
   & > svg {
-    width: map-get($base, font-size-h4) * 1.6;
+    width: map-get($base, font-size-h4) * 9.4;
     height: map-get($base, font-size-h4) * 1.6;
     margin-right: map-get($spacers, 3);
     vertical-align: middle;
@@ -79,6 +79,12 @@
     @include media-breakpoint-down(md) {
       font-size: map-get($base, font-size-h4-small);
     }
+  }
+}
+
+.header__brand:hover {
+  & > svg path {
+    fill: #e7e7e7 !important;
   }
 }
 

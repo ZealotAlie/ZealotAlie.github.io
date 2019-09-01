@@ -151,13 +151,20 @@ layout: base
                     {%- if page.excerpt -%}
                       <p class="overlay__excerpt">{{ page.excerpt | strip_html | strip_newlines | strip | truncate: _article_header_excerpt_truncate }}</p>
                     {%- endif -%}
+                    {%- if page.article_header.header_title -%}
+                      <div class = "article__header">
+                        <header>
+                          <h3>{{ page.article_header.header_title }}</h3>
+                        </header>
+                      </div>
+                    {%- endif -%}
                     {%- if page.article_header.actions -%}
                       <ul class="menu">
                         {%- for _action in page.article_header.actions -%}
                           {%- include snippets/get-nav-url.html path=_action.url -%}
                           {%- assign _url = __return -%}
                           {%- assign _type = _action.type | default: 'info' -%}
-                          <li><a class="button button--{{ _type }} button--rounded button--xl" href="{{ _url }}">{{ _action.text }}</a></li>
+                          <li><a class="button button--{{ _type }} button--rounded button--xl" href="{{ _action.url }}">{{ _action.text }}</a></li>
                         {%- endfor -%}
                       </ul>
                     {%- endif -%}
@@ -179,7 +186,7 @@ layout: base
 
 
         {%- if _full_width == false -%}
-          <div class ="main">
+          <div class ="main" id="main" >
         {%- endif -%}
             <div class="grid grid--reverse">
 
