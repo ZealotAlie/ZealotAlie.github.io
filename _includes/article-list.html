@@ -8,6 +8,47 @@
 {%- assign _sorted_list = include.articles -%}
 {%- if include.group_by == 'year' -%}
   {%- assign _sorted_list = _sorted_list | sort: 'date' -%}
+
+  {%- assign _size = _sorted_list.size | minus:0 -%}
+  {%- assign _sort_first = -1 -%}
+  {%- assign _sort_count = 0 -%}
+  {%- assign _last_date = nil -%}
+
+  {% for i in (0.._size) %}
+
+    {%- if _last_date == _sorted_list[i].date -%}
+
+      {%- if _sort_first < 0 -%}
+        {%- assign _sort_first = i | minus:1 -%}
+        {%- assign _sort_count = 1 -%}
+      {%- endif -%}
+      {%- assign _sort_count = _sort_count | plus:1 -%}
+
+    {%- else -%}
+    
+      {%- if _sort_first >= 0 -%}
+        {%- assign _list0 = '' | split: '' -%}
+        {%- if _sort_first > 0 -%}
+          {%- assign _list0 = _sorted_list | slice:0,_sort_first -%}
+        {%- endif -%}
+        {%- assign _list1 = _sorted_list | slice:_sort_first,_sort_count | sort: 'title' -%}
+        {%- assign _list0 = _list0 | concat:_list1 -%}
+        {%- assign _v0 = _sort_first | plus:_sort_count -%}
+        {%- if _v0 < _size -%}
+          {%- assign _v1 = _size | minus:_v0 | plus:0 -%}
+          {%- assign _list2 = _sorted_list | slice:_v0, _v1 -%}
+          {%- assign _list0 = _list0 | concat:_list2 -%}
+        {%- endif -%}
+        {%- assign _sorted_list = _list0 -%}
+      {%- endif -%}
+
+      {%- assign _sort_first = -1 -%}
+      {%- assign _last_date = _sorted_list[i].date -%}
+
+    {%- endif -%}
+
+  {% endfor %}
+
 {%- endif -%}
 {%- if include.reverse -%}
   {%- assign _sorted_list = _sorted_list | reverse -%}
